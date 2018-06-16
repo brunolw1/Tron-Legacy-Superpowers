@@ -1,0 +1,627 @@
+# -- coding: utf-8 --
+"""
+Created on Mon May 14 13:42:26 2018
+
+@author: Decao
+"""
+from Classerastro import Rastro
+from Classeborda import Borda
+from Classemoto import Moto
+from Classebotao import Win
+import pygame
+import sys
+from pygame.locals import *
+import random
+
+
+
+# ===============   INICIALIZAÇÃO   ===============
+pygame.init()
+tela = pygame.display.set_mode((1500, 800), 0, 32)
+pygame.display.set_caption('TRON LEGACY SUPERPOWERS')
+
+# carrega imagem de fundo 
+
+fundomenu = pygame.image.load("menuzio.png").convert()
+fundojogo = pygame.image.load("Mapa.png").convert()
+
+#Cria a moto azul
+
+moto = Moto("Moto azulpequena.png", 100,400, 2,0)
+moto_group = pygame.sprite.Group()
+
+
+
+# Cria a moto vermelha
+motov = Moto("Moto vermelha rightpequena.png", 1300,400, -2,0)
+motov_group = pygame.sprite.Group()
+
+
+# Rastros 
+rastroazul = Rastro("Rastroazulpequeno.png",135,402)
+
+
+rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x-10,motov.rect.y+2)
+
+
+rastrovermelho_group =  pygame.sprite.Group()
+rastroazul_group =  pygame.sprite.Group()
+
+# ===============   LOOPING PRINCIPAL   ===============
+
+pygame.mixer.pre_init(44100,16,2,4096)
+
+
+pygame.mixer.music.load("TRONMUSIC.mp3")
+pygame.mixer.music.set_volume(1.0)
+pygame.mixer.music.play(-1)
+turbomotoa = 0
+turbomotov = 0
+migueazul = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+migue = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+delay = 0
+numerinho=2
+numerenho=3
+MOVMOTOA = 0 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+MOVMOTOV = 1 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+pimp=0
+gilbert=0
+lamen=2
+ramen=-2
+lomen=2
+romen=-2
+augusto = 0
+temakie=0
+#StartMenu = True
+#while StartMenu:
+#    for event in pygame.event.get():  #pega lista de eventos
+#        if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+#            StartMenu = False            #executa a função de sistema "exit"
+menu=True
+ko=True
+while ko:
+    while menu:
+        for event in pygame.event.get():  #pega lista de eventos
+            if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                ko = False
+        pressed_keys = pygame.key.get_pressed()        
+        fundo = pygame.image.load("menuzio.png").convert()
+        
+        rastroazul = Rastro("Rastroazulpequeno.png",135,402)
+        rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x-10,motov.rect.y+2)
+        rastrovermelho_group =  pygame.sprite.Group()
+        rastroazul_group =  pygame.sprite.Group()
+        fundojogo = pygame.image.load("Mapa.png").convert()
+        moto = Moto("Moto azulpequena.png", 100,400, 1,0)
+        moto_group = pygame.sprite.Group()
+        motov = Moto("Moto vermelha rightpequena.png", 1300,400, -1,0)
+        motov_group = pygame.sprite.Group()
+        Star = Moto("Star.png",random.randint(1,1500),random.randint(1,780), 0,0)
+        Star_group = pygame.sprite.Group()
+        Star_group.add(Star)
+        if pressed_keys[K_SPACE]:
+          menu = False
+          start = True
+        temaki=0 
+        fernandinho=0 
+        turbomotov = 0
+        migueazul = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+        migue = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+        delay = 0
+        numerinho=2
+        numerenho=3
+        MOVMOTOA = 0 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+        MOVMOTOV = 1 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+        turbomotoa = 0
+        turbomotov = 0
+        migueazul = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+        migue = 0 ## o - direita, 1 - esquerda, 2 - cima, 3 - baixo
+        delay = 0
+        numerinho=2
+        numerenho=3
+        MOVMOTOA = 0 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+        MOVMOTOV = 1 ## DIREITA 1-ESQUERDA 2- CIMA 3- BAIXO
+        pimp=0
+        gilbert=0
+        lamen=2
+        ramen=-2
+        lomen=2
+        romen=-2
+        augusto = 0
+        temakie=0
+        tela.blit(fundomenu, (0, 0))
+        pygame.display.update() 
+        if pressed_keys[K_q]:
+          rodando=False
+          menu=False
+          
+    while start:
+        for event in pygame.event.get():  #pega lista de eventos
+            if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                ko = False
+        i = 0
+        if i < 40:
+            if i >= 20: 
+                fundo = pygame.image.load("2.png").convert()
+                pygame.display.update()
+                fundo = pygame.image.load("Mapa.png").convert()
+                pygame.display.update()
+                i += 1
+            if i < 20:
+                fundo = pygame.image.load("3.png").convert()
+                pygame.display.update()
+                fundo = pygame.image.load("Mapa.png").convert()
+                pygame.display.update()
+                i+=1
+                aa = 0
+        if aa <40:
+            if aa >= 20:
+                fundo = pygame.image.load("1.png").convert()
+                pygame.display.update()
+                fundo = pygame.image.load("Mapa.png").convert()
+                pygame.display.update()
+                aa +=1
+            if aa <20:
+                fundo = pygame.image.load("go.png").convert()
+                pygame.display.update()
+                start = False
+                rodando = True
+        
+        tela.blit(fundomenu, (0, 0))
+        pygame.display.update() 
+        
+    while rodando:
+      pressed_keys = pygame.key.get_pressed()
+      for event in pygame.event.get():  #pega lista de eventos
+        if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+          ko = False    
+      #executa a função de sistema "exit"
+      if pressed_keys[K_q]:
+          rodando=False
+          menu=False
+      #gera menu
+      gilbert=0
+      motov_group.add(motov)
+      moto_group.add(moto)
+
+        #GERAR BORDA
+      moto.move()
+      if moto.rect.x < 0 or moto.rect.x > 1500:
+          moto.vy = 0
+          moto.vx = 0
+          motov.vy = 0
+          motov.vx = 0
+          gilbert=1
+          fundojogo = pygame.image.load("MenuRedWins.png").convert()
+          if pressed_keys[K_m]:
+              menu=True
+              rodando=False
+      if moto.rect.y < 0 or moto.rect.y > 800:
+          moto.vy = 0
+          moto.vx = 0
+          motov.vy = 0
+          motov.vx = 0
+          gilbert=1
+          fundojogo = pygame.image.load("MenuRedWins.png").convert()
+      motov.move()
+      if motov.rect.x < 0 or motov.rect.x > 1500:
+          moto.vy = 0
+          moto.vx = 0
+          motov.vy = 0
+          motov.vx = 0
+          gilbert=1
+          fundojogo = pygame.image.load("MenuBlueWins.png").convert()
+          if pressed_keys[K_m]:
+              menu=True
+              rodando=False
+      if motov.rect.y < 0 or motov.rect.y > 800:
+          moto.vy = 0
+          moto.vx = 0
+          motov.vy = 0
+          motov.vx = 0
+          gilbert=1
+          fundojogo = pygame.image.load("MenuBlueWins.png").convert()
+          if pressed_keys[K_m]:
+              menu=True
+              rodando=False
+      
+    
+      
+              
+      #colisao com a estrela
+      
+      if pygame.sprite.spritecollide(motov, Star_group, False):
+          Star.rect.x = 2000
+          temaki = random.randint(1, 3)
+          if temaki == 1:
+              romen = -3
+              lomen = 3
+              fundojogo = pygame.image.load("turbo.png").convert()
+              Bluewin_group.draw(tela)
+              
+          if temaki == 2:
+              ramen = -1
+              lamen = 1
+              fundojogo = pygame.image.load("slow.png").convert()
+              Bluewin_group.draw(tela)
+              
+          if temaki == 3:
+              fernandinho = 1
+              fundojogo = pygame.image.load("ghost.png").convert()
+              Bluewin_group.draw(tela)
+              
+          
+          if pressed_keys[K_m]:
+              menu=True
+              rodando=False
+              
+      if pygame.sprite.spritecollide(moto, Star_group, False):
+          Star.rect.x = 2000
+          temakie = random.randint(1, 3)
+          if temakie == 1:
+              ramen = -3
+              lamen = 3
+              fundojogo = pygame.image.load("turbo.png").convert()
+              Bluewin_group.draw(tela)
+              
+              
+          if temakie == 2:
+              romen = -1
+              lomen = 1
+              fundojogo = pygame.image.load("slow.png").convert()
+              Bluewin_group.draw(tela)
+              
+          if temakie == 3:
+              augusto = 1
+              fundojogo = pygame.image.load("ghost.png").convert()
+              Bluewin_group.draw(tela)
+              
+          Bluewin_group.draw(tela)
+#          fundojogo = pygame.image.load("MenuDraw.png").convert()
+          if pressed_keys[K_m]:
+              menu=True
+              rodando=False
+              
+        ##COLISAO
+      if pygame.sprite.spritecollide(moto, rastrovermelho_group, False):
+              moto.vy = 0
+              moto.vx = 0
+              motov.vy = 0
+              motov.vx = 0
+              gilbert=1
+              Bluewin_group.draw(tela)
+              fundojogo = pygame.image.load("MenuRedWins.png").convert()
+              if pressed_keys[K_m]:
+                  menu=True
+                  rodando=False
+      
+          
+      if pygame.sprite.spritecollide(moto, motov_group, False):
+              moto.vy = 0
+              moto.vx = 0
+              motov.vy = 0
+              motov.vx = 0
+              gilbert=1
+              Bluewin_group.draw(tela)
+              fundojogo = pygame.image.load("MenuDraw.png").convert()
+              if pressed_keys[K_m]:
+                  menu=True
+                  rodando=False
+      if augusto == 0:           
+          if pygame.sprite.spritecollide(moto, rastroazul_group, False):
+              moto.vy = 0
+              moto.vx = 0
+              motov.vy = 0
+              motov.vx = 0
+              gilbert=1
+              Bluewin_group.draw(tela)
+              fundojogo = pygame.image.load("MenuRedWins.png").convert()
+              if pressed_keys[K_m]:
+                  menu=True
+                  rodando=False
+                  
+          
+                  
+      if pygame.sprite.spritecollide(motov, rastroazul_group, False):
+              moto.vy = 0
+              moto.vx = 0
+              motov.vy = 0
+              motov.vx = 0
+              gilbert=1
+              Bluewin_group.draw(tela)
+              fundojogo = pygame.image.load("MenuBlueWins.png").convert()
+              if pressed_keys[K_m]:
+                  menu=True
+                  rodando=False
+                  
+    
+                  
+      if fernandinho == 0:
+          if pygame.sprite.spritecollide(motov, rastrovermelho_group, False):
+              moto.vy = 0
+              moto.vx = 0
+              motov.vy = 0
+              motov.vx = 0
+              gilbert=1
+              Bluewin_group.draw(tela)
+              fundojogo = pygame.image.load("MenuBlueWins.png").convert()
+              if pressed_keys[K_m]:
+                  menu=True
+                  rodando=False
+          
+        
+                  
+        
+      
+#        
+        
+      # MOTO AZUL
+      
+      
+      
+      
+      
+          ## MOVIMENTACAO MOTO AZUL
+    
+      if MOVMOTOA == 0:
+          if gilbert==0:
+              if pressed_keys[K_UP]:
+                 if numerinho != 1:
+                      moto.vy = ramen
+                      moto.vx = 0
+                      numerinho=0
+                      migueazul = 2
+                      moto.rect.y -= 28
+                      moto.rect.x -= 14
+                      MOVMOTOA = 2
+                 
+                 elif pressed_keys[K_RIGHT]:
+                     moto.vy=1
+                     moto.vx=1
+                 elif pressed_keys[K_LEFT]:
+                     moto.vy=1
+                     moto.vx=1
+              elif pressed_keys[K_DOWN]:
+                  if numerinho != 0:
+                      moto.vy = lamen
+                      moto.vx = 0
+                      numerinho=1
+                      migueazul = 3
+                      moto.rect.y += 18
+                      moto.rect.x -= 14
+                      MOVMOTOA = 3
+                 
+      if MOVMOTOA == 1:
+          if gilbert==0:
+              if pressed_keys[K_UP]:
+                 if numerinho != 1:
+                      moto.vy = ramen
+                      moto.vx = 0
+                      numerinho=0
+                      migueazul = 2
+                      moto.rect.y -= 28
+                      moto.rect.x += 35
+                      MOVMOTOA = 2
+              elif pressed_keys[K_DOWN]:
+                  if numerinho != 0:
+                      moto.vy = lamen
+                      moto.vx = 0
+                      numerinho=1
+                      migueazul = 3
+                      moto.rect.y += 12
+                      moto.rect.x += 30
+                      MOVMOTOA = 3      
+                 
+      if MOVMOTOA == 2:
+          if gilbert==0:
+              if pressed_keys[K_RIGHT]:
+                  if numerinho != 3:
+                      moto.vx = lamen
+                      moto.vy = 0
+                      numerinho=2
+                      migueazul =0
+                      moto.rect.y += 22
+                      moto.rect.x += 10
+                      MOVMOTOA = 0 
+                  
+              elif pressed_keys[K_LEFT]:
+                  if numerinho != 2:
+                      moto.vx = ramen
+                      moto.vy = 0
+                      numerinho=3
+                      migueazul = 1
+                      moto.rect.y += 24
+                      moto.rect.x -= 31.5
+                      MOVMOTOA = 1 
+                  
+      if MOVMOTOA == 3:
+          if gilbert==0:
+              if pressed_keys[K_RIGHT]:
+                  if numerinho != 3:
+                      moto.vx = lamen
+                      moto.vy = 0
+                      numerinho=2
+                      migueazul =0
+                      moto.rect.y -= 16
+                      moto.rect.x += 16
+                      MOVMOTOA = 0 
+                  
+              elif pressed_keys[K_LEFT]:
+                  if numerinho != 2:
+                      moto.vx = ramen
+                      moto.vy = 0
+                      numerinho=3
+                      migueazul = 1
+                      moto.rect.y -= 14
+                      moto.rect.x -= 40
+                      MOVMOTOA = 1 
+        
+                  
+                  
+        ## MOVIMENTACAO MOTO VERMELHA
+        
+        
+        
+      if MOVMOTOV == 0:
+          if gilbert==0:
+              if pressed_keys[K_w]:
+                 if numerenho != 1:
+                      motov.vy = romen
+                      motov.vx = 0
+                      numerenho=0
+                      migue = 2
+                      motov.rect.y -= 28
+                      motov.rect.x -= 14
+                      MOVMOTOV = 2
+              elif pressed_keys[K_s]:
+                  if numerenho != 0:
+                      motov.vy = lomen
+                      motov.vx = 0
+                      numerenho=1
+                      migue = 3
+                      motov.rect.y += 18
+                      motov.rect.x -= 14
+                      MOVMOTOV = 3
+    
+      if MOVMOTOV == 1:
+          if gilbert==0:
+              if pressed_keys[K_w]:
+                 if numerenho != 1:
+                      motov.vy = romen
+                      motov.vx = 0
+                      numerenho=0
+                      migue = 2
+                      motov.rect.y -= 28
+                      motov.rect.x += 35
+                      MOVMOTOV = 2
+              elif pressed_keys[K_s]:
+                  if numerenho != 0:
+                      motov.vy = lomen
+                      motov.vx = 0
+                      numerenho=1
+                      migue = 3
+                      motov.rect.y += 12
+                      motov.rect.x += 30
+                      MOVMOTOV = 3      
+                 
+      if MOVMOTOV == 2:
+          if gilbert==0:
+              if pressed_keys[K_d]:
+                  if numerenho != 3:
+                      motov.vx = lomen
+                      motov.vy = 0
+                      migue = 1
+                      numerenho=2
+                      motov.rect.y += 22
+                      motov.rect.x += 10
+                      MOVMOTOV = 0 
+                  
+              elif pressed_keys[K_a]:
+                  if numerenho != 2:
+                      motov.vx = romen
+                      motov.vy = 0
+                      numerenho=3
+                      migue = 0 
+                      motov.rect.y += 24
+                      motov.rect.x -= 31.5
+                      MOVMOTOV = 1 
+                  
+      if MOVMOTOV == 3:
+          if gilbert==0:
+              if pressed_keys[K_d]:
+                  if numerenho != 3:
+                      motov.vx = lomen
+                      motov.vy = 0
+                      migue = 1
+                      numerenho=2
+                      motov.rect.y -= 16
+                      motov.rect.x += 16
+                      MOVMOTOV = 0 
+                  
+              elif pressed_keys[K_a]:
+                  if numerenho != 2:
+                      motov.vx = romen
+                      motov.vy = 0
+                      numerenho=3
+                      migue = 0 
+                      motov.rect.y -= 14
+                      motov.rect.x -= 40
+                      MOVMOTOV = 1 
+    
+            
+            
+            
+          # TURBO MOTO AZUL
+#      elif pressed_keys[K_SPACE]:
+#          if turbomotoa < 10:
+#              if moto.vx < 0:
+#                  moto.vx = -2
+#              elif moto.vx > 0:
+#                  moto.vx = 2
+#              elif moto.vy < 0:
+#                  moto.vy = -2
+#              elif moto.vy > 0:
+#                  moto.vy = 2
+#          turbomotoa += 1
+                  
+            # TURBO MOTO VERMELHA
+      elif pressed_keys[K_z]:
+          if turbomotov < 10:
+              if motov.vx < 0:
+                  motov.vx = -2
+              elif motov.vx > 0:
+                  motov.vx = 2
+              elif motov.vy < 0:
+                  motov.vy = -2
+              elif motov.vy > 0:
+                  motov.vy = 2
+              turbomotov += 1
+       
+    
+      delay += 1
+      if delay == 2:
+              if migueazul == 0:
+                  moto.image = pygame.image.load('Moto azul rightpequena.png')
+                  rastroazul = Rastro("Rastroazulpequeno.png",moto.rect.x-10,moto.rect.y+2)
+                  rastroazul_group.add(rastroazul)
+              if migueazul ==1:
+                  moto.image = pygame.image.load('Moto azulpequena.png')
+                  rastroazul = Rastro("Rastroazulpequeno.png",moto.rect.x+35,moto.rect.y+2)
+                  rastroazul_group.add(rastroazul)
+              if migueazul ==2:
+                  moto.image = pygame.image.load('Moto azul uppequena.png')
+                  rastroazul = Rastro("Rastroazulpequeno.png",moto.rect.x+2,moto.rect.y+30)
+                  rastroazul_group.add(rastroazul)
+              if migueazul ==3:
+                  moto.image = pygame.image.load('Moto azul downpequena.png')
+                  rastroazul = Rastro("Rastroazulpequeno.png",moto.rect.x+2,moto.rect.y-10)
+                  rastroazul_group.add(rastroazul)
+                  
+              if migue == 0:
+                  motov.image = pygame.image.load('Moto vermelha leftpequena.png')
+                  rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x+35,motov.rect.y+2)
+                  rastrovermelho_group.add(rastrovermelho)
+              if migue == 1:
+                  motov.image = pygame.image.load('Moto vermelha rightpequena.png')
+                  rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x-10,motov.rect.y +2)
+                  rastrovermelho_group.add(rastrovermelho)
+              if migue == 2:
+                  motov.image = pygame.image.load('Moto vermelha uppequena.png')
+                  rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x + 2,motov.rect.y +30)
+                  rastrovermelho_group.add(rastrovermelho)
+              if migue == 3:
+                  motov.image = pygame.image.load('Moto vermelha downpequena.png')
+                  rastrovermelho = Rastro("Rastrovermelhopequeno.png",motov.rect.x +2,motov.rect.y - 10)
+                  rastrovermelho_group.add(rastrovermelho)
+              delay = 0
+    
+      #gera saídas
+      tela.blit(fundojogo, (0, 0))
+      Star_group.draw(tela)
+      moto_group.draw(tela)
+      rastrovermelho_group.draw(tela)
+      rastroazul_group.draw(tela)
+      motov_group.draw(tela)
+      pygame.display.update()      #coloca a tela na janela  
+pygame.display.quit()
+pygame.quit()
